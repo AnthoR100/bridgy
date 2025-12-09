@@ -3,9 +3,9 @@ import { AuthProvider, useAuth } from './hooks/useAuth';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
 
 // Pages communes
-import Home from './pages/Home';
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();

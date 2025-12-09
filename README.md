@@ -6,7 +6,7 @@
 
 ## 📦 Installation
 ```bash
-git clone https://github.com/votre-repo/bridgy.git
+git clone https://github.com/AnthoR100/bridgy.git
 cd bridgy
 npm install
 npm run dev
