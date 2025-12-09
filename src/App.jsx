@@ -4,11 +4,21 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
+import LoadingSpinner from './components/LoadingSpinner';
 
 // Pages communes
 
 function AppRoutes() {
-  const { isAuthenticated, isStudent, isCompany } = useAuth();
+  const { isAuthenticated, isStudent, isCompany, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <LoadingSpinner message="Chargement..." />
+      </div>
+    );
+  }
 
   return (
     <div className="mes-super-classes">
@@ -16,10 +26,13 @@ function AppRoutes() {
       <main>
         <Routes>
           {/* Routes publiques */}
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={isAuthenticated ? <Home /> : <Navigate to="/login" replace />}
+          />
           <Route
             path="/login"
-            element={isAuthenticated ? <Navigate to="/" replace /> : {/* page de login */}}
+            element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
           />
 
           {/* Routes pour les étudiants */}

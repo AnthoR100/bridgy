@@ -9,3 +9,24 @@ export const API_CONFIG = {
 export const getApiBaseUrl = () => {
   return `${API_CONFIG.BASE_URL}/api/${API_CONFIG.GROUP}`;
 };
+
+export const CONTRACT_TYPES = {
+  STAGE: 'STAGE', 
+  ALTERNANCE: 'ALTERNANCE', 
+  CDI: 'CDI', 
+  CDD: 'CDD', 
+  FREELANCE: 'FREELANCE'
+};
+
+export const APPLICATION_STATUS = { 
+  RECEIVED: 'RECEIVED', 
+  IN_REVIEW: 'IN_REVIEW', 
+  INTERVIEW: 'INTERVIEW', 
+  REJECTED: 'REJECTED', 
+  ACCEPTED: 'ACCEPTED' 
+};
+
+export const USER_ROLES = {
+  STUDENT: 'STUDENT',
+  COMPANY: 'COMPANY'
+};
