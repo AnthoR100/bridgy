@@ -8,8 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Charger l'utilisateur depuis localStorage au démarrage
-    const currentUser = authService.getCurrentUser();
+    // Charger l'utilisateur depuis localStorage au démarrage uniquement si un token existe
+    const token = localStorage.getItem('token');
+    const currentUser = token ? authService.getCurrentUser() : null;
     setUser(currentUser);
     setLoading(false);
   }, []);
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const isAuthenticated = !!user;
+  const isAuthenticated = !!user && !!localStorage.getItem('token');
   const isStudent = user?.role === 'STUDENT';
   const isCompany = user?.role === 'COMPANY';
 
