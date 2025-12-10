@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { offersService } from "../services/offersService.jsx";
+import { offersService } from "../services/offersService.js";
 
 export function useCompanyOffers() {
     const [offers, setOffers] = useState([]);

@@ -9,6 +9,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 import OffersList from "./pages/OffersList.jsx";
 import CompanyOffers from "./pages/CompanyOffers.jsx";
 import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
+import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany, loading } = useAuth();
@@ -64,6 +65,15 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+                path="/offers/:id"
+                element={
+                    <ProtectedRoute requiredRole="STUDENT">
+                        <OfferDetailsPage />
+                    </ProtectedRoute>
+                }
+            />
 
           <Route
             path="/my-offers"

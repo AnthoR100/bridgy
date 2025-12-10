@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import { useAuth } from './useAuth';
-import { offersService } from "../services/offersService.jsx";
+import { offersService } from "../services/offersService.js";
 
 export function useOffers() {
     const { user } = useAuth();
