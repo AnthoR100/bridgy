@@ -3,6 +3,8 @@ import { AuthProvider, useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import ProfilePageStudent from './pages/ProfilePageStudent';
+import ProfilePageCompany from './pages/ProfilePageCompany';
 import SignupPage from './pages/SignupPage';
 import LoadingSpinner from './components/LoadingSpinner';
 
@@ -39,6 +41,14 @@ function AppRoutes() {
 
           {/* Routes pour les étudiants */}
           <Route
+            path="/profile_student"
+            element={
+              <ProtectedRoute requiredRole="STUDENT">
+                <ProfilePageStudent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/offers"
             element={
               <ProtectedRoute requiredRole="STUDENT">
@@ -50,6 +60,15 @@ function AppRoutes() {
           { /* ... */ }
 
           {/* Routes pour les entreprises */}
+
+          <Route
+            path="/profile_company"
+            element={
+              <ProtectedRoute requiredRole="COMPANY">
+                <ProfilePageCompany />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/my-offers"
             element={
