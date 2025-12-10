@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
+import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -9,8 +10,6 @@ import OffersList from "./pages/OffersList.jsx";
 import CompanyOffers from "./pages/CompanyOffers.jsx";
 import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
 import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
-
-// Pages communes
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany, loading } = useAuth();
@@ -27,31 +26,47 @@ function AppRoutes() {
     <div>
       <main>
         <Routes>
-          {/* Routes publiques */}
           <Route
             path="/"
-            element={isAuthenticated ? <Home /> : <Navigate to="/login" replace />}
+            element={
+              isAuthenticated ? (
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <Home />
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
           />
+
           <Route
             path="/login"
             element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
           />
+
           <Route
             path="/register"
             element={isAuthenticated ? <Navigate to="/" replace /> : <SignupPage />}
           />
 
-          {/* Routes pour les étudiants */}
           <Route
             path="/offers"
             element={
               <ProtectedRoute requiredRole="STUDENT">
-                {/* pages offres d'emploi */}
-                  <OffersList />
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <OffersList />
+                  </div>
+                </div>
               </ProtectedRoute>
             }
           />
-            <Route
+
+          <Route
                 path="/offers/:id"
                 element={
                     <ProtectedRoute requiredRole="STUDENT">
@@ -59,69 +74,90 @@ function AppRoutes() {
                     </ProtectedRoute>
                 }
             />
-          
-          { /* ... */ }
 
-          {/* Routes pour les entreprises */}
           <Route
             path="/my-offers"
             element={
               <ProtectedRoute requiredRole="COMPANY">
-                {/* page mes offres */}
-                  <CompanyOffers />
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <CompanyOffers />
+                  </div>
+                </div>
               </ProtectedRoute>
             }
           />
-            <Route
-                path="/company/offers"
-                element={
-                    <ProtectedRoute requiredRole="COMPANY">
-                        <CompanyOffers />
-                    </ProtectedRoute>
-                }
-            />
-
-            <Route
-                path="/company/offers/create"
-                element={
-                    <ProtectedRoute requiredRole="COMPANY">
-                        <FormCompanyOffers />
-                    </ProtectedRoute>
-                }
-            />
-
-            <Route
-                path="/company/offers/edit/:id"
-                element={
-                    <ProtectedRoute requiredRole="COMPANY">
-                        <FormCompanyOffers />
-                    </ProtectedRoute>
-                }
-            />
           
-          { /* ... */ }
+          <Route
+            path="/company/offers"
+            element={
+              <ProtectedRoute requiredRole="COMPANY">
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <CompanyOffers />
+                  </div>
+                </div>
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Routes partagées - redirigent vers le bon composant selon le rôle */}
+          <Route
+            path="/company/offers/create"
+            element={
+              <ProtectedRoute requiredRole="COMPANY">
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <FormCompanyOffers />
+                  </div>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/company/offers/edit/:id"
+            element={
+              <ProtectedRoute requiredRole="COMPANY">
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <FormCompanyOffers />
+                  </div>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/applications"
             element={
               isStudent ? (
                 <ProtectedRoute requiredRole="STUDENT">
-                  {/* page candidature */}
+                  <div className="flex min-h-screen bg-gray-50">
+                    <Sidebar />
+                    <div className="flex-1 overflow-x-hidden">
+                      <div className="text-lg font-semibold text-gray-800">Mes candidatures</div>
+                    </div>
+                  </div>
                 </ProtectedRoute>
               ) : isCompany ? (
                 <ProtectedRoute requiredRole="COMPANY">
-                  {/* page candidats */}
+                  <div className="flex min-h-screen bg-gray-50">
+                    <Sidebar />
+                    <div className="flex-1 overflow-x-hidden">
+                      <div className="text-lg font-semibold text-gray-800">Candidatures reçues</div>
+                    </div>
+                  </div>
                 </ProtectedRoute>
               ) : (
                 <Navigate to="/login" replace />
               )
             }
           />
-          
-          { /* ... */ }
 
-          {/* Route 404 */}
           <Route path="*" element={<>{/* à implémenter */}</>} />
         </Routes>
       </main>
