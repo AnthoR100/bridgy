@@ -56,11 +56,29 @@ function AppRoutes() {
           />
 
           <Route
-            path="/profile_student"
+            path="/profile"
             element={
-              <ProtectedRoute requiredRole="STUDENT">
-                <ProfilePageStudent />
-              </ProtectedRoute>
+              isStudent ? (
+                <ProtectedRoute requiredRole="STUDENT">
+                  <div className="flex min-h-screen bg-gray-50">
+                    <Sidebar />
+                    <div className="flex-1 overflow-x-hidden">
+                      <ProfilePageStudent />
+                    </div>
+                  </div>
+                </ProtectedRoute>
+              ) : isCompany ? (
+                <ProtectedRoute requiredRole="COMPANY">
+                  <div className="flex min-h-screen bg-gray-50">
+                    <Sidebar />
+                    <div className="flex-1 overflow-x-hidden">
+                      <ProfilePageCompany />
+                    </div>
+                  </div>
+                </ProtectedRoute>
+              ) : (
+                <Navigate to="/login" replace />
+              )
             }
           />
           <Route
@@ -82,16 +100,6 @@ function AppRoutes() {
             element={
               <ProtectedRoute requiredRole="STUDENT">
                 <OfferDetailsPage />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Routes pour les entreprises */}
-          <Route
-            path="/profile_company"
-            element={
-              <ProtectedRoute requiredRole="COMPANY">
-                <ProfilePageCompany />
               </ProtectedRoute>
             }
           />
