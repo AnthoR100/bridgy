@@ -19,11 +19,20 @@ export const CONTRACT_TYPES = {
 };
 
 export const APPLICATION_STATUS = { 
-  RECEIVED: 'RECEIVED', 
-  IN_REVIEW: 'IN_REVIEW', 
+  PENDING: 'PENDING', 
+  REVIEWED: 'REVIEWED', 
   INTERVIEW: 'INTERVIEW', 
-  REJECTED: 'REJECTED', 
-  ACCEPTED: 'ACCEPTED' 
+  ACCEPTED: 'ACCEPTED', 
+  REJECTED: 'REJECTED' 
+};
+
+// Labels français pour les statuts
+export const APPLICATION_STATUS_LABELS = {
+  PENDING: 'En attente',
+  REVIEWED: 'En revue',
+  INTERVIEW: 'Entretien',
+  ACCEPTED: 'Accepté',
+  REJECTED: 'Refusé'
 };
 
 export const USER_ROLES = {

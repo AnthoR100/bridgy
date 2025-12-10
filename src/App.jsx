@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import ProfilePageStudent from './pages/ProfilePageStudent';
 import ProfilePageCompany from './pages/ProfilePageCompany';
 import SignupPage from './pages/SignupPage';
+import ApplicationPage from './pages/ApplicationPage';
 import LoadingSpinner from './components/LoadingSpinner';
 
 // Pages communes
@@ -90,7 +91,7 @@ function AppRoutes() {
                 </ProtectedRoute>
               ) : isCompany ? (
                 <ProtectedRoute requiredRole="COMPANY">
-                  {/* page candidats */}
+                  <ApplicationPage />
                 </ProtectedRoute>
               ) : (
                 <Navigate to="/login" replace />
