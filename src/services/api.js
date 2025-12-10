@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_CONFIG, getApiBaseUrl } from './config';
 
 // Instance axios avec configuration de base
-const api = axios.create({
+export const api = axios.create({
   baseURL: getApiBaseUrl(),
   timeout: API_CONFIG.TIMEOUT,
   headers: {

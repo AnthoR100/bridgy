@@ -5,6 +5,10 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import LoadingSpinner from './components/LoadingSpinner';
+import OffersList from "./pages/OffersList.jsx";
+import CompanyOffers from "./pages/CompanyOffers.jsx";
+import CompanyOffersEdit from "./pages/FormCompanyOffers.jsx";
+import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
 
 // Pages communes
 
@@ -43,6 +47,7 @@ function AppRoutes() {
             element={
               <ProtectedRoute requiredRole="STUDENT">
                 {/* pages offres d'emploi */}
+                  <OffersList />
               </ProtectedRoute>
             }
           />
@@ -55,9 +60,36 @@ function AppRoutes() {
             element={
               <ProtectedRoute requiredRole="COMPANY">
                 {/* page mes offres */}
+                  <CompanyOffers />
               </ProtectedRoute>
             }
           />
+            <Route
+                path="/company/offers"
+                element={
+                    <ProtectedRoute requiredRole="COMPANY">
+                        <CompanyOffers />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/company/offers/create"
+                element={
+                    <ProtectedRoute requiredRole="COMPANY">
+                        <FormCompanyOffers />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/company/offers/edit/:id"
+                element={
+                    <ProtectedRoute requiredRole="COMPANY">
+                        <FormCompanyOffers />
+                    </ProtectedRoute>
+                }
+            />
           
           { /* ... */ }
 
