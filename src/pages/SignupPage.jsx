@@ -154,7 +154,7 @@ const SignupPage = () => {
               )}
             </button>
 
-            <div className='w-full flex justify-center items-center lg:hidden'>
+            <div className='w-full flex justify-center items-center shadow-sm lg:hidden'>
               <Link to="/login" className="text-black font-bold underline">
                 Se connecter
               </Link>
