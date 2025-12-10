@@ -1,10 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 import LoadingSpinner from './components/LoadingSpinner';
 
 // Pages communes
@@ -21,8 +20,7 @@ function AppRoutes() {
   }
 
   return (
-    <div className="mes-super-classes">
-      <Header />
+    <div>
       <main>
         <Routes>
           {/* Routes publiques */}
@@ -33,6 +31,10 @@ function AppRoutes() {
           <Route
             path="/login"
             element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
+          />
+          <Route
+            path="/register"
+            element={isAuthenticated ? <Navigate to="/" replace /> : <SignupPage />}
           />
 
           {/* Routes pour les étudiants */}
@@ -83,7 +85,6 @@ function AppRoutes() {
           <Route path="*" element={<>{/* à implémenter */}</>} />
         </Routes>
       </main>
-      <Footer />
     </div>
   );
 }

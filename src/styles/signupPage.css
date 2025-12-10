@@ -1,0 +1,55 @@
+/* Sélecteur Principal */
+.city-selector-dropdown,
+.city-selector-dropdown::picker(select) {
+    appearance: base-select;
+    top: anchor(bottom);
+
+    width: 300px;
+    padding: 10px;
+
+    cursor: pointer;
+    outline: none;
+    transition: all var(--transition-duration) ease;
+
+    background-color: var(--color-bg-dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border-dark);
+    border-radius: var(--border-radius);
+
+    color: var(--text-light);
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.city-selector-dropdown::picker-icon {
+    content: "▼";
+}
+
+.city-selector-dropdown option{
+    border-radius: var(--border-radius);
+}
+
+.city-selector-dropdown option::checkmark {
+    padding: 10px;
+    content: "▶";
+}
+
+/* Sélecteur Principal */
+.role-selector-dropdown,
+.role-selector-dropdown::picker(select) {
+    appearance: base-select;
+    top: anchor(bottom);
+}
+
+.role-selector-dropdown::picker-icon {
+    content: "▼";
+}
+
+.role-selector-dropdown option{
+    border-radius: var(--border-radius);
+}
+
+.role-selector-dropdown option::checkmark {
+    padding: 10px;
+    content: "➤";
+}
