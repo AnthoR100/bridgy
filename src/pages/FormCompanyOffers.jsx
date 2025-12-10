@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { offersService } from "../services/offersService.jsx";
+import { offersService } from "../services/offersService.js";
 import CompanyOfferForm from "../components/CompanyOfferForm.jsx";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
 import ErrorMessage from "../components/ErrorMessage.jsx";

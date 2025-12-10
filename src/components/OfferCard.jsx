@@ -25,7 +25,7 @@ export default function OfferCard({ offer }) {
 
             <button
                 onClick={() => navigate(`/offers/${offer.id}`)}
-                className="mt-5 w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm"
             >
                 Voir l’offre
             </button>
