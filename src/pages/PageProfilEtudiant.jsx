@@ -152,16 +152,16 @@ const PageProfilEtudiant = () => {
   );
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 p-4 sm:p-6">
       {/* En-tête avec titre et boutons d'action */}
-      <div className="mx-auto flex w-full items-center justify-between">
+      <div className="mx-auto flex w-full flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <p className="text-xs uppercase tracking-wide text-gray-500">Espace étudiant</p>
           <h1 className="text-lg font-semibold text-gray-900">Mon profil</h1>
         </div>
 
         {/* Boutons Modifier / Annuler / Enregistrer */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {isEditing ? (
             <>
               <button
@@ -193,9 +193,9 @@ const PageProfilEtudiant = () => {
       </div>
 
       {/* Section principale : Formulaire de profil */}
-      <section className="max-w-3xl mx-auto rounded-2xl border border-gray-100 bg-white shadow-sm">
+      <section className="mx-auto max-w-3xl rounded-2xl border border-gray-100 bg-white shadow-sm">
         {/* En-tête avec avatar et informations de base */}
-        <div className="flex items-center gap-4 border-b border-gray-100 px-4 py-4">
+        <div className="flex flex-col items-start gap-4 border-b border-gray-100 px-4 py-4 sm:flex-row sm:items-center">
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-lg font-semibold text-emerald-700">
             {initials}
           </div>

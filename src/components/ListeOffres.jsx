@@ -8,7 +8,7 @@ export default function ListeOffres() {
     if (error) return <p className="text-center mt-10 text-red-600">{error}</p>;
 
     return (
-        <div className="space-y-6 p-6">
+        <div className="space-y-6 p-4 sm:p-6">
             <div className="mx-auto w-full">
                 <p className="text-xs uppercase tracking-wide text-gray-500">Espace étudiant</p>
                 <h1 className="text-lg font-semibold text-gray-900">Offres disponible</h1>

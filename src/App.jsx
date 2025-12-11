@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import RouteProtegee from './components/RouteProtegee';
-import BarreLaterale from './components/BarreLaterale';
+import LayoutDashboard from './components/LayoutDashboard.jsx';
 import PageAccueil from './pages/PageAccueil';
 import PageConnexion from './pages/PageConnexion';
 import PageProfilEtudiant from './pages/PageProfilEtudiant';
@@ -36,12 +36,9 @@ function AppRoutes() {
             path="/"
             element={
               isAuthenticated ? (
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageAccueil />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageAccueil />
+                </LayoutDashboard>
               ) : (
                 <Navigate to="/login" replace />
               )
@@ -75,21 +72,15 @@ function AppRoutes() {
             element={
               isStudent ? (
                 <RouteProtegee requiredRole="STUDENT">
-                  <div className="flex min-h-screen bg-gray-50">
-                    <BarreLaterale />
-                    <div className="flex-1 overflow-x-hidden">
-                      <PageProfilEtudiant />
-                    </div>
-                  </div>
+                  <LayoutDashboard>
+                    <PageProfilEtudiant />
+                  </LayoutDashboard>
                 </RouteProtegee>
               ) : isCompany ? (
                 <RouteProtegee requiredRole="COMPANY">
-                  <div className="flex min-h-screen bg-gray-50">
-                    <BarreLaterale />
-                    <div className="flex-1 overflow-x-hidden">
-                      <PageProfilEntreprise />
-                    </div>
-                  </div>
+                  <LayoutDashboard>
+                    <PageProfilEntreprise />
+                  </LayoutDashboard>
                 </RouteProtegee>
               ) : (
                 <Navigate to="/login" replace />
@@ -100,12 +91,9 @@ function AppRoutes() {
             path="/offers"
             element={
               <RouteProtegee requiredRole="STUDENT">
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageListeOffres />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageListeOffres />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -114,12 +102,9 @@ function AppRoutes() {
             path="/offers/:id"
             element={
               <RouteProtegee requiredRole="STUDENT">
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageDetailOffre />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageDetailOffre />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -128,12 +113,9 @@ function AppRoutes() {
             path="/my-offers"
             element={
               <RouteProtegee requiredRole="COMPANY">
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageOffresEntreprise />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageOffresEntreprise />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -142,12 +124,9 @@ function AppRoutes() {
             path="/company/offers"
             element={
               <RouteProtegee requiredRole="COMPANY">
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageOffresEntreprise />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageOffresEntreprise />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -156,12 +135,9 @@ function AppRoutes() {
             path="/company/offers/create"
             element={
               <RouteProtegee requiredRole="COMPANY">
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageFormOffreEntreprise />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageFormOffreEntreprise />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -170,12 +146,9 @@ function AppRoutes() {
             path="/company/offers/edit/:id"
             element={
               <RouteProtegee requiredRole="COMPANY">
-                <div className="flex min-h-screen bg-gray-50">
-                  <BarreLaterale />
-                  <div className="flex-1 overflow-x-hidden">
-                    <PageFormOffreEntreprise />
-                  </div>
-                </div>
+                <LayoutDashboard>
+                  <PageFormOffreEntreprise />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -183,7 +156,9 @@ function AppRoutes() {
           <Route path="/apply/:id" 
             element={
               <RouteProtegee requiredRole="STUDENT">
-                <PagePostuler />
+                <LayoutDashboard>
+                  <PagePostuler />
+                </LayoutDashboard>
               </RouteProtegee>
             }
           />
@@ -193,21 +168,15 @@ function AppRoutes() {
             element={
               isStudent ? (
                 <RouteProtegee requiredRole="STUDENT">
-                  <div className="flex min-h-screen bg-gray-50">
-                    <BarreLaterale />
-                    <div className="flex-1 overflow-x-hidden">
-                      <PageCandidaturesEtudiant />
-                    </div>
-                  </div>
+                  <LayoutDashboard>
+                    <PageCandidaturesEtudiant />
+                  </LayoutDashboard>
                 </RouteProtegee>
               ) : isCompany ? (
                 <RouteProtegee requiredRole="COMPANY">
-                  <div className="flex min-h-screen bg-gray-50">
-                    <BarreLaterale />
-                    <div className="flex-1 overflow-x-hidden">
-                      <PageCandidaturesEntreprise />
-                    </div>
-                  </div>
+                  <LayoutDashboard>
+                    <PageCandidaturesEntreprise />
+                  </LayoutDashboard>
                 </RouteProtegee>
               ) : (
                 <Navigate to="/login" replace />

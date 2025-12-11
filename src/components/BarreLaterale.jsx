@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import Logo from '../assets/Logo.png';
 
-const BarreLaterale = () => {
+const BarreLaterale = ({ onNavigate }) => {
   const { isStudent, isCompany, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,9 +38,15 @@ const BarreLaterale = () => {
     navigate('/login', { replace: true });
   };
 
+  const handleNavigate = () => {
+    if (onNavigate) {
+      onNavigate();
+    }
+  };
+
   return (
-    <aside className="sticky top-0 flex h-screen w-72 flex-col bg-white shadow-sm">
-      <div className="flex items-center gap-3 px-6 py-4">
+    <aside className="flex h-full w-72 flex-col bg-white shadow-sm lg:sticky lg:top-0 lg:h-screen">
+      <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-100">
         <img src={Logo} alt="Bridgy" className="h-10 w-10 object-contain" />
         <div>
           <p className="text-lg font-bold text-emerald-600">Bridgy</p>
@@ -54,6 +60,7 @@ const BarreLaterale = () => {
             <li key={item.to}>
               <Link
                 to={item.to}
+                onClick={handleNavigate}
                 className={`block rounded-xl px-4 py-3 transition ${
                   isActive(item.to)
                     ? 'bg-emerald-50 text-emerald-700'
