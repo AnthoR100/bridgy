@@ -180,6 +180,14 @@ function AppRoutes() {
             }
           />
 
+          <Route path="/apply/:id" 
+          element={
+            <ProtectedRoute requiredRole="STUDENT">
+                <ApplyPage />
+            </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/applications"
             element={

@@ -8,9 +8,12 @@ export default function CardDetailOffer({ offer }) {
 
     if (!offer) return null;
 
+    const contractType = offer.contractType ?? "Non renseigné";
+    const location = offer.location ?? "Non renseignée";
+    const companyName = offer.company?.name ?? offer.companyName ?? "Entreprise non renseignée";
+
     const handleApplyClick = () => {
         if (!isAuthenticated) {
-            // Redirige vers login si pas connecté
             navigate("/login");
             return;
         }
@@ -20,27 +23,7 @@ export default function CardDetailOffer({ offer }) {
             return;
         }
 
-        // Redirige vers la page de candidature pour cette offre
         navigate(`/apply/${offer.id}`);
-    };
-
-    return (
-        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-            {/* Titre */}
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                {offer.title ?? "Titre non disponible"}
-            </h1>
-
-    const contractType = offer.contractType ?? "Non renseigné";
-    const location = offer.location ?? "Non renseignée";
-    const companyName = offer.company?.name ?? offer.companyName ?? "Entreprise non renseignée";
-
-    const handleApply = () => {
-        if (!isStudent) {
-            alert("Vous devez être connecté en tant qu'étudiant pour postuler.");
-            return;
-        }
-        alert("Candidature envoyée (à implémenter).");
     };
 
     return (
@@ -97,14 +80,15 @@ export default function CardDetailOffer({ offer }) {
                     </section>
                 )}
 
-            {/* Bouton Postuler */}
-            <div className="mt-6">
-                <button
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition"
-                    onClick={handleApplyClick}
-                >
-                    Postuler
-                </button>
+                {/* CTA */}
+                <div className="pt-4 border-t border-gray-200">
+                    <button
+                        className="cursor-pointer rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600"
+                        onClick={handleApplyClick}
+                    >
+                        Postuler
+                    </button>
+                </div>
             </div>
         </div>
     );
