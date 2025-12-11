@@ -1,46 +1,60 @@
 import React from "react";
 
-export default function CompanyOfferForm({ form, setForm, onSubmit, isEditing }) {
+export default function CompanyOfferForm({ form, setForm, onSubmit, isEditing, isLoading = false }) {
     if (!form) return null;
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
+    const baseInputClass = "mt-2 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-100";
+
     return (
-        <form onSubmit={onSubmit} className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-            <div className="mb-4">
-                <label className="block mb-2 font-medium">Titre du poste</label>
+        <form onSubmit={onSubmit} className="w-full space-y-4">
+            <div>
+                <label className="text-xs font-medium text-gray-600" htmlFor="title">
+                    Titre du poste
+                </label>
                 <input
+                    id="title"
                     name="title"
                     value={form.title || ""}
                     onChange={handleChange}
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none"
+                    className={baseInputClass}
                     required
                     placeholder="Ex: Développeur React"
+                    disabled={isLoading}
                 />
             </div>
 
-            <div className="mb-4">
-                <label className="block mb-2 font-medium">Description</label>
+            <div>
+                <label className="text-xs font-medium text-gray-600" htmlFor="description">
+                    Description
+                </label>
                 <textarea
+                    id="description"
                     name="description"
                     value={form.description || ""}
                     onChange={handleChange}
-                    className="w-full p-2 border rounded h-32 focus:ring-2 focus:ring-blue-500 outline-none"
+                    className={`${baseInputClass} min-h-[110px]`}
                     required
                     placeholder="Détails de l'offre..."
+                    disabled={isLoading}
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label className="block mb-2 font-medium">Type de contrat</label>
+                    <label className="text-xs font-medium text-gray-600" htmlFor="contractType">
+                        Type de contrat
+                    </label>
                     <select
+                        id="contractType"
                         name="contractType"
                         value={form.contractType || "CDI"}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none"
+                        className={baseInputClass}
+                        disabled={isLoading}
                     >
                         <option value="CDI">CDI</option>
                         <option value="CDD">CDD</option>
@@ -50,34 +64,43 @@ export default function CompanyOfferForm({ form, setForm, onSubmit, isEditing })
                 </div>
 
                 <div>
-                    <label className="block mb-2 font-medium">Localisation</label>
+                    <label className="text-xs font-medium text-gray-600" htmlFor="location">
+                        Localisation
+                    </label>
                     <input
+                        id="location"
                         name="location"
                         value={form.location || ""}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none"
+                        className={baseInputClass}
                         required
                         placeholder="Ex: Paris, Télétravail"
+                        disabled={isLoading}
                     />
                 </div>
             </div>
 
-            <div className="mb-6">
-                <label className="block mb-2 font-medium">Mots-clés (séparés par virgules)</label>
+            <div>
+                <label className="text-xs font-medium text-gray-600" htmlFor="keywords">
+                    Mots-clés (séparés par virgules)
+                </label>
                 <input
+                    id="keywords"
                     name="keywords"
                     value={form.keywords || ""}
                     onChange={handleChange}
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none"
+                    className={baseInputClass}
                     placeholder="Ex: React, Node.js, API"
+                    disabled={isLoading}
                 />
             </div>
 
             <button
                 type="submit"
-                className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded hover:bg-blue-700 transition duration-200"
+                disabled={isLoading}
+                className="cursor-pointer w-full rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600 disabled:opacity-60"
             >
-                {isEditing ? "Mettre à jour l'offre" : "Publier l'offre"}
+                {isLoading ? "Chargement..." : (isEditing ? "Mettre à jour l'offre" : "Publier l'offre")}
             </button>
         </form>
     );

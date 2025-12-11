@@ -4,7 +4,7 @@ export default function OfferCard({ offer }) {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-white shadow-xl rounded-xl p-5 border border-gray-200 transition-all duration-200 flex flex-col justify-between items-start h-full gap-4">
+        <div className="bg-white shadow-sm rounded-xl p-5 border border-gray-200 transition-all duration-200 flex flex-col justify-between items-start h-full gap-4">
             <h2 className="text-xl font-bold text-gray-800">{offer.title}</h2>
 
             <p className="text-gray-600">
