@@ -9,8 +9,8 @@ import ProfilePageCompany from './pages/ProfilePageCompany';
 import SignupPage from './pages/SignupPage';
 import ApplicationPage from './pages/ApplicationPage';
 import LoadingSpinner from './components/LoadingSpinner';
-import OffersList from "./pages/OffersList.jsx";
-import CompanyOffers from "./pages/CompanyOffers.jsx";
+import OffersList from "./components/OffersList.jsx";
+import CompanyOffers from "./components/CompanyOffers.jsx";
 import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
 import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
 
@@ -47,12 +47,24 @@ function AppRoutes() {
 
           <Route
             path="/login"
-            element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
+            element={
+              isAuthenticated ? (
+                <Navigate to={isStudent ? "/offers" : isCompany ? "/my-offers" : "/"} replace />
+              ) : (
+                <LoginPage />
+              )
+            }
           />
 
           <Route
             path="/register"
-            element={isAuthenticated ? <Navigate to="/" replace /> : <SignupPage />}
+            element={
+              isAuthenticated ? (
+                <Navigate to={isStudent ? "/offers" : isCompany ? "/my-offers" : "/"} replace />
+              ) : (
+                <SignupPage />
+              )
+            }
           />
 
           <Route
@@ -99,7 +111,12 @@ function AppRoutes() {
             path="/offers/:id"
             element={
               <ProtectedRoute requiredRole="STUDENT">
-                <OfferDetailsPage />
+                <div className="flex min-h-screen bg-gray-50">
+                  <Sidebar />
+                  <div className="flex-1 overflow-x-hidden">
+                    <OfferDetailsPage />
+                  </div>
+                </div>
               </ProtectedRoute>
             }
           />
