@@ -1,12 +1,12 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import LoadingSpinner from './LoadingSpinner';
+import SpinnerChargement from './SpinnerChargement';
 
-const ProtectedRoute = ({ children, requiredRole }) => {
+const RouteProtegee = ({ children, requiredRole }) => {
   const { isAuthenticated, user, loading } = useAuth();
 
   if (loading) {
-    return <LoadingSpinner message="Vérification de l'authentification..." />;
+    return <SpinnerChargement message="Vérification de l'authentification..." />;
   }
 
   if (!isAuthenticated) {
@@ -20,4 +20,4 @@ const ProtectedRoute = ({ children, requiredRole }) => {
   return children;
 };
 
-export default ProtectedRoute;
+export default RouteProtegee;

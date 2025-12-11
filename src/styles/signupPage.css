@@ -1,0 +1,18 @@
+.role-selector-dropdown,
+.role-selector-dropdown::picker(select) {
+    appearance: base-select;
+    top: anchor(bottom);
+}
+
+.role-selector-dropdown::picker-icon {
+    content: "▼";
+}
+
+.role-selector-dropdown option{
+    border-radius: var(--border-radius);
+}
+
+.role-selector-dropdown option::checkmark {
+    padding: 10px;
+    content: "➤";
+}
