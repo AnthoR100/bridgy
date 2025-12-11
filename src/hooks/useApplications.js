@@ -105,3 +105,5 @@ const useApplications = () => {
 };
 
 export default useApplications;
+
+

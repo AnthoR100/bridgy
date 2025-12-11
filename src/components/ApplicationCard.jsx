@@ -1,5 +1,5 @@
-import { Calendar } from 'lucide-react';
 import { APPLICATION_STATUS, APPLICATION_STATUS_LABELS } from '../services/config';
+import { Calendar } from 'lucide-react';
 
 const ApplicationCard = ({ application, onStatusChange }) => {
   // Formater la date en français
