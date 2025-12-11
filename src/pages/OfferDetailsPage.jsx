@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { offersService } from "../services/offersService.js";
 
-import CardDetailOffer from "../components/CardDetailOffer.jsx";
+import OfferDetailsCard from "../components/OfferDetailsCard.jsx";
 
 export default function OfferDetailsPage() {
     const { id } = useParams(); // <- doit correspondre au :id de la route
@@ -36,7 +36,7 @@ export default function OfferDetailsPage() {
 
     return (
         <div className="p-6">
-            <CardDetailOffer offer={offer} />
+            <OfferDetailsCard offer={offer} />
         </div>
     );
 }
