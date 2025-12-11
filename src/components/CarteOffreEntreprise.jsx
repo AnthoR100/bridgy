@@ -1,4 +1,4 @@
-export default function CompanyOfferCard({ offer, onDelete, onEdit }) {
+export default function CarteOffreEntreprise({ offer, onDelete, onEdit }) {
 
     return (
         <div className="bg-white shadow-sm rounded-xl p-5 border border-gray-200 transition-all duration-200 flex flex-col justify-between h-full relative">

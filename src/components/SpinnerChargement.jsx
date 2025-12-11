@@ -1,4 +1,4 @@
-const LoadingSpinner = ({ message = 'Chargement' }) => {
+const SpinnerChargement = ({ message = 'Chargement' }) => {
   return (
     <div className="flex items-center justify-center p-8">
       <div className="flex items-center">
@@ -13,4 +13,4 @@ const LoadingSpinner = ({ message = 'Chargement' }) => {
   );
 };
 
-export default LoadingSpinner;
+export default SpinnerChargement;

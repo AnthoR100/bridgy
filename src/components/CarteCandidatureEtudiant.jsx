@@ -1,7 +1,7 @@
 import { Calendar, Building2, FileText } from 'lucide-react';
 import { APPLICATION_STATUS, APPLICATION_STATUS_LABELS } from '../services/config';
 
-const StudentApplicationCard = ({ application }) => {
+const CarteCandidatureEtudiant = ({ application }) => {
   // Formater la date en français
   const formatDate = (dateString) => {
     if (!dateString) return 'Date non disponible';
@@ -80,5 +80,5 @@ const StudentApplicationCard = ({ application }) => {
   );
 };
 
-export default StudentApplicationCard;
+export default CarteCandidatureEtudiant;
 

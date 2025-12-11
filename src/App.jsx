@@ -1,20 +1,20 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
-import ProtectedRoute from './components/ProtectedRoute';
-import Sidebar from './components/Sidebar';
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
-import ProfilePageStudent from './pages/ProfilePageStudent';
-import ProfilePageCompany from './pages/ProfilePageCompany';
-import SignupPage from './pages/SignupPage';
-import ApplicationPage from './pages/ApplicationPage';
-import StudentApplicationsPage from './pages/StudentApplicationsPage';
-import LoadingSpinner from './components/LoadingSpinner';
-import OffersList from "./pages/OffersList.jsx";
-import CompanyOffers from "./pages/CompanyOffers.jsx";
-import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
-import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
-import ApplyPage from "./pages/ApplyPage.jsx";
+import RouteProtegee from './components/RouteProtegee';
+import BarreLaterale from './components/BarreLaterale';
+import PageAccueil from './pages/PageAccueil';
+import PageConnexion from './pages/PageConnexion';
+import PageProfilEtudiant from './pages/PageProfilEtudiant';
+import PageProfilEntreprise from './pages/PageProfilEntreprise';
+import PageInscription from './pages/PageInscription';
+import PageCandidaturesEntreprise from './pages/PageCandidaturesEntreprise';
+import PageCandidaturesEtudiant from './pages/PageCandidaturesEtudiant';
+import SpinnerChargement from './components/SpinnerChargement';
+import PageListeOffres from "./pages/PageListeOffres.jsx";
+import PageOffresEntreprise from "./pages/PageOffresEntreprise.jsx";
+import PageFormOffreEntreprise from "./pages/PageFormOffreEntreprise.jsx";
+import PageDetailOffre from "./pages/PageDetailOffre.jsx";
+import PagePostuler from "./pages/PagePostuler.jsx";
 
 
 function AppRoutes() {
@@ -23,7 +23,7 @@ function AppRoutes() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <LoadingSpinner message="Chargement..." />
+        <SpinnerChargement message="Chargement..." />
       </div>
     );
   }
@@ -37,9 +37,9 @@ function AppRoutes() {
             element={
               isAuthenticated ? (
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <Home />
+                    <PageAccueil />
                   </div>
                 </div>
               ) : (
@@ -54,7 +54,7 @@ function AppRoutes() {
               isAuthenticated ? (
                 <Navigate to={isStudent ? "/offers" : isCompany ? "/my-offers" : "/"} replace />
               ) : (
-                <LoginPage />
+                <PageConnexion />
               )
             }
           />
@@ -65,7 +65,7 @@ function AppRoutes() {
               isAuthenticated ? (
                 <Navigate to={isStudent ? "/offers" : isCompany ? "/my-offers" : "/"} replace />
               ) : (
-                <SignupPage />
+                <PageInscription />
               )
             }
           />
@@ -74,23 +74,23 @@ function AppRoutes() {
             path="/profile"
             element={
               isStudent ? (
-                <ProtectedRoute requiredRole="STUDENT">
+                <RouteProtegee requiredRole="STUDENT">
                   <div className="flex min-h-screen bg-gray-50">
-                    <Sidebar />
+                    <BarreLaterale />
                     <div className="flex-1 overflow-x-hidden">
-                      <ProfilePageStudent />
+                      <PageProfilEtudiant />
                     </div>
                   </div>
-                </ProtectedRoute>
+                </RouteProtegee>
               ) : isCompany ? (
-                <ProtectedRoute requiredRole="COMPANY">
+                <RouteProtegee requiredRole="COMPANY">
                   <div className="flex min-h-screen bg-gray-50">
-                    <Sidebar />
+                    <BarreLaterale />
                     <div className="flex-1 overflow-x-hidden">
-                      <ProfilePageCompany />
+                      <PageProfilEntreprise />
                     </div>
                   </div>
-                </ProtectedRoute>
+                </RouteProtegee>
               ) : (
                 <Navigate to="/login" replace />
               )
@@ -99,92 +99,92 @@ function AppRoutes() {
           <Route
             path="/offers"
             element={
-              <ProtectedRoute requiredRole="STUDENT">
+              <RouteProtegee requiredRole="STUDENT">
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <OffersList />
+                    <PageListeOffres />
                   </div>
                 </div>
-              </ProtectedRoute>
+              </RouteProtegee>
             }
           />
 
           <Route
             path="/offers/:id"
             element={
-              <ProtectedRoute requiredRole="STUDENT">
+              <RouteProtegee requiredRole="STUDENT">
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <OfferDetailsPage />
+                    <PageDetailOffre />
                   </div>
                 </div>
-              </ProtectedRoute>
+              </RouteProtegee>
             }
           />
 
           <Route
             path="/my-offers"
             element={
-              <ProtectedRoute requiredRole="COMPANY">
+              <RouteProtegee requiredRole="COMPANY">
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <CompanyOffers />
+                    <PageOffresEntreprise />
                   </div>
                 </div>
-              </ProtectedRoute>
+              </RouteProtegee>
             }
           />
 
           <Route
             path="/company/offers"
             element={
-              <ProtectedRoute requiredRole="COMPANY">
+              <RouteProtegee requiredRole="COMPANY">
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <CompanyOffers />
+                    <PageOffresEntreprise />
                   </div>
                 </div>
-              </ProtectedRoute>
+              </RouteProtegee>
             }
           />
 
           <Route
             path="/company/offers/create"
             element={
-              <ProtectedRoute requiredRole="COMPANY">
+              <RouteProtegee requiredRole="COMPANY">
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <FormCompanyOffers />
+                    <PageFormOffreEntreprise />
                   </div>
                 </div>
-              </ProtectedRoute>
+              </RouteProtegee>
             }
           />
 
           <Route
             path="/company/offers/edit/:id"
             element={
-              <ProtectedRoute requiredRole="COMPANY">
+              <RouteProtegee requiredRole="COMPANY">
                 <div className="flex min-h-screen bg-gray-50">
-                  <Sidebar />
+                  <BarreLaterale />
                   <div className="flex-1 overflow-x-hidden">
-                    <FormCompanyOffers />
+                    <PageFormOffreEntreprise />
                   </div>
                 </div>
-              </ProtectedRoute>
+              </RouteProtegee>
             }
           />
 
           <Route path="/apply/:id" 
-          element={
-            <ProtectedRoute requiredRole="STUDENT">
-                <ApplyPage />
-            </ProtectedRoute>
+            element={
+              <RouteProtegee requiredRole="STUDENT">
+                <PagePostuler />
+              </RouteProtegee>
             }
           />
 
@@ -192,23 +192,23 @@ function AppRoutes() {
             path="/applications"
             element={
               isStudent ? (
-                <ProtectedRoute requiredRole="STUDENT">
+                <RouteProtegee requiredRole="STUDENT">
                   <div className="flex min-h-screen bg-gray-50">
-                    <Sidebar />
+                    <BarreLaterale />
                     <div className="flex-1 overflow-x-hidden">
-                      <StudentApplicationsPage />
+                      <PageCandidaturesEtudiant />
                     </div>
                   </div>
-                </ProtectedRoute>
+                </RouteProtegee>
               ) : isCompany ? (
-                <ProtectedRoute requiredRole="COMPANY">
+                <RouteProtegee requiredRole="COMPANY">
                   <div className="flex min-h-screen bg-gray-50">
-                    <Sidebar />
+                    <BarreLaterale />
                     <div className="flex-1 overflow-x-hidden">
-                      <ApplicationPage />
+                      <PageCandidaturesEntreprise />
                     </div>
                   </div>
-                </ProtectedRoute>
+                </RouteProtegee>
               ) : (
                 <Navigate to="/login" replace />
               )

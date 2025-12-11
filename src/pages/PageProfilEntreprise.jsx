@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
-import ErrorMessage from '../components/ErrorMessage';
-import LoadingSpinner from '../components/LoadingSpinner';
+import MessageErreur from '../components/MessageErreur';
+import SpinnerChargement from '../components/SpinnerChargement';
 import { useProfile } from '../hooks/useProfile';
 
 /**
  * Page de profil entreprise permettant de visualiser et modifier les informations de l'entreprise
  */
-const ProfilePageCompany = () => {
+const PageProfilEntreprise = () => {
   const { profile, error, getCompanyProfile, updateCompanyProfile } = useProfile();
 
   // État du formulaire avec les données du profil
@@ -187,7 +187,7 @@ const ProfilePageCompany = () => {
 
         {/* Formulaire ou spinner de chargement */}
         {isFetching && !profile ? (
-          <LoadingSpinner message="Chargement du profil entreprise..." />
+          <SpinnerChargement message="Chargement du profil entreprise..." />
         ) : (
           <form
             id="company-profile-form"
@@ -195,7 +195,7 @@ const ProfilePageCompany = () => {
             className="space-y-4 px-4 py-4"
           >
             {/* Messages d'erreur et de succès */}
-            <ErrorMessage message={localError} error={error} />
+            <MessageErreur message={localError} error={error} />
             {successMessage && (
               <div className="rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                 {successMessage}
@@ -310,4 +310,4 @@ const ProfilePageCompany = () => {
   );
 };
 
-export default ProfilePageCompany;
+export default PageProfilEntreprise;

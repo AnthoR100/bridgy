@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-export default function CardDetailOffer({ offer }) {
+export default function CardDetailOffer({ offer, isApplied }) {
     const navigate = useNavigate();
     const { isAuthenticated, isStudent } = useAuth();
 
@@ -11,6 +11,15 @@ export default function CardDetailOffer({ offer }) {
     const contractType = offer.contractType ?? "Non renseigné";
     const location = offer.location ?? "Non renseignée";
     const companyName = offer.company?.name ?? offer.companyName ?? "Entreprise non renseignée";
+    // Essaye plusieurs champs potentiels renvoyés par l'API pour marquer une candidature existante
+    const alreadyApplied = Boolean(
+        isApplied ??
+        offer?.hasApplied ??
+        offer?.applied ??
+        offer?.alreadyApplied ??
+        offer?.applicationStatus ??      // certaines API renvoient un statut de candidature
+        offer?.applicationId            // ou un id de candidature
+    );
 
     const handleApplyClick = () => {
         if (!isAuthenticated) {
@@ -23,6 +32,7 @@ export default function CardDetailOffer({ offer }) {
             return;
         }
 
+        if (alreadyApplied) return;
         navigate(`/apply/${offer.id}`);
     };
 
@@ -83,10 +93,15 @@ export default function CardDetailOffer({ offer }) {
                 {/* CTA */}
                 <div className="pt-4 border-t border-gray-200">
                     <button
-                        className="cursor-pointer rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600"
+                        className={`cursor-pointer rounded-full px-6 py-3 text-sm font-semibold text-white shadow-sm transition ${
+                            alreadyApplied
+                                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                                : "bg-emerald-500 hover:bg-emerald-600"
+                        }`}
                         onClick={handleApplyClick}
+                        disabled={alreadyApplied}
                     >
-                        Postuler
+                        {alreadyApplied ? "déjà postulé" : "Postuler"}
                     </button>
                 </div>
             </div>

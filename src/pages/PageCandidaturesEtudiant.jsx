@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useApplications from '../hooks/useApplications';
-import StudentApplicationCard from '../components/StudentApplicationCard';
-import LoadingSpinner from '../components/LoadingSpinner';
-import ErrorMessage from '../components/ErrorMessage';
+import CarteCandidatureEtudiant from '../components/CarteCandidatureEtudiant';
+import SpinnerChargement from '../components/SpinnerChargement';
+import MessageErreur from '../components/MessageErreur';
 import { APPLICATION_STATUS, APPLICATION_STATUS_LABELS } from '../services/config';
 
-const StudentApplicationsPage = () => {
+const PageCandidaturesEtudiant = () => {
   const { applications, loading, error, fetchApplications } = useApplications();
   const navigate = useNavigate();
 
@@ -45,13 +45,13 @@ const StudentApplicationsPage = () => {
 
   // Gestion des états de chargement et d'erreur
   if (loading && applications.length === 0) {
-    return <LoadingSpinner message="Chargement de vos candidatures..." />;
+    return <SpinnerChargement message="Chargement de vos candidatures..." />;
   }
 
   if (error && applications.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 px-4 py-6">
-        <ErrorMessage message={error} />
+        <MessageErreur message={error} />
         <div className="mt-4">
           <button
             onClick={fetchApplications}
@@ -74,7 +74,7 @@ const StudentApplicationsPage = () => {
       {/* Container principal */}
       <div className="bg-gray-50 pb-20 lg:pb-0 px-4 py-6 lg:px-8">
         {/* Message d'erreur */}
-        {error && <ErrorMessage message={error} />}
+        {error && <MessageErreur message={error} />}
 
         {/* Affichage Desktop - Tableau */}
         <div className="hidden lg:block">
@@ -182,7 +182,7 @@ const StudentApplicationsPage = () => {
                   key={app.id}
                   onClick={() => navigate(`/offers/${app.offer?.id}`)}
                 >
-                  <StudentApplicationCard application={app} />
+                  <CarteCandidatureEtudiant application={app} />
                 </div>
               ))}
             </div>
@@ -193,5 +193,5 @@ const StudentApplicationsPage = () => {
   );
 };
 
-export default StudentApplicationsPage;
+export default PageCandidaturesEtudiant;
 

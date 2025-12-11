@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import Logo from '../assets/Logo.png';
 
-const Sidebar = () => {
+const BarreLaterale = () => {
   const { isStudent, isCompany, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -80,4 +80,4 @@ const Sidebar = () => {
   );
 };
   
-export default Sidebar;
+export default BarreLaterale;

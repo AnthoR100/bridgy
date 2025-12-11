@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
-import Modal from './Modal';
+import ModaleGenerique from './ModaleGenerique';
 import { useAuth } from '../hooks/useAuth';
 import { useProfile } from '../hooks/useProfile';
-import LoadingSpinner from './LoadingSpinner';
+import SpinnerChargement from './SpinnerChargement';
 
-const ApplicationModal = ({ isOpen, onClose, offer, onSubmit }) => {
+const ModaleCandidature = ({ isOpen, onClose, offer, onSubmit }) => {
   const { user } = useAuth();
   const { profile, loading: profileLoading, getStudentProfile } = useProfile();
   const [formData, setFormData] = useState({
@@ -82,16 +82,16 @@ const ApplicationModal = ({ isOpen, onClose, offer, onSubmit }) => {
   // Afficher le spinner si le profil est en cours de chargement
   if (profileLoading && !profile) {
     return (
-      <Modal isOpen={isOpen} onClose={handleClose} title="">
+      <ModaleGenerique isOpen={isOpen} onClose={handleClose} title="">
         <div className="flex justify-center py-8">
-          <LoadingSpinner message="Chargement de votre profil..." />
+          <SpinnerChargement message="Chargement de votre profil..." />
         </div>
-      </Modal>
+      </ModaleGenerique>
     );
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="">
+    <ModaleGenerique isOpen={isOpen} onClose={handleClose} title="">
       {/* Header custom */}
       <div className="mb-6">
         <p className="text-sm text-gray-600 mb-1">
@@ -196,18 +196,18 @@ Cordialement,"
           disabled={loading || !formData.cvLink || formData.cvLink.trim() === ''}
           className="w-full py-3 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
         >
-          {loading ? (
+              {loading ? (
             <>
-              <LoadingSpinner message="Envoi en cours..." />
+              <SpinnerChargement message="Envoi en cours..." />
             </>
           ) : (
             'Envoyer ma candidature'
           )}
         </button>
       </form>
-    </Modal>
+    </ModaleGenerique>
   );
 };
 
-export default ApplicationModal;
+export default ModaleCandidature;
 

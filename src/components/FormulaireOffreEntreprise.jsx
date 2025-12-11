@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CompanyOfferForm({ form, setForm, onSubmit, isEditing, isLoading = false }) {
+export default function FormulaireOffreEntreprise({ form, setForm, onSubmit, isEditing, isLoading = false }) {
     if (!form) return null;
 
     const handleChange = (e) => {

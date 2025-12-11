@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ApplicationForm({ offerId, onCancel, onSuccess }) {
+export default function FormulaireCandidature({ offerId, onCancel, onSuccess }) {
     const [coverLetter, setCoverLetter] = useState("");
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);

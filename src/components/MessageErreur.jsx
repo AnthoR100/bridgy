@@ -1,4 +1,4 @@
-const ErrorMessage = ({ message, error, status }) => {
+const MessageErreur = ({ message, error, status }) => {
   // Déterminer le message d'erreur à afficher
   const getErrorMessage = () => {
     if (error?.status) {
@@ -47,5 +47,5 @@ const ErrorMessage = ({ message, error, status }) => {
   );
 };
 
-export default ErrorMessage;
+export default MessageErreur;
 

@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { offersService } from "../services/offersService.js";
+import { studentService } from "../services/api.js";
 
-import OfferDetailsCard from "../components/OfferDetailsCard.jsx";
+import CarteDetailsOffre from "../components/CarteDetailsOffre.jsx";
 
-export default function OfferDetailsPage() {
+export default function PageDetailOffre() {
     const { id } = useParams(); // <- doit correspondre au :id de la route
     const [offer, setOffer] = useState(null);
+    const [alreadyApplied, setAlreadyApplied] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
         async function loadOffer() {
             try {
-                console.log("Fetching offer with ID:", id);
-                const response = await offersService.getStudentOfferDetail(id);
-                console.log("Offer data:", response.data);
-                setOffer(response.data.offer);
+                const [offerRes, applications] = await Promise.all([
+                    offersService.getStudentOfferDetail(id),
+                    studentService.getApplications(),
+                ]);
+
+                const fetchedOffer = offerRes?.data?.offer ?? offerRes?.offer ?? offerRes;
+                setOffer(fetchedOffer);
+
+                const hasApplied = applications.some(
+                    (app) =>
+                        String(app.offer?.id ?? app.offerId ?? app.offer_id) === String(id)
+                );
+                setAlreadyApplied(hasApplied);
             } catch (e) {
                 console.error("Erreur lors du chargement de l'offre :", e);
                 setError(true);
@@ -36,7 +47,7 @@ export default function OfferDetailsPage() {
 
     return (
         <div className="p-6">
-            <OfferDetailsCard offer={offer} />
+            <CarteDetailsOffre offer={offer} isApplied={alreadyApplied} />
         </div>
     );
 }

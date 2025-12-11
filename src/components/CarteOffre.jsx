@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function OfferCard({ offer }) {
+export default function CarteOffre({ offer }) {
     const navigate = useNavigate();
 
     return (

@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 /**
  * Barre de recherche stylée avec Tailwind, alignée sur le design du site.
  */
-export default function SearchBar({
+export default function BarreRecherche({
   value,
   onChange,
   placeholder = 'Rechercher une offre...',

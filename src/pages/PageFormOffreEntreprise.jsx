@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { offersService } from "../services/offersService.js";
-import CompanyOfferForm from "../components/CompanyOfferForm.jsx";
-import LoadingSpinner from "../components/LoadingSpinner.jsx";
-import ErrorMessage from "../components/ErrorMessage.jsx";
+import FormulaireOffreEntreprise from "../components/FormulaireOffreEntreprise.jsx";
+import SpinnerChargement from "../components/SpinnerChargement.jsx";
+import MessageErreur from "../components/MessageErreur.jsx";
 
-export default function FormCompanyOffers() {
+export default function PageFormOffreEntreprise() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -102,7 +102,7 @@ export default function FormCompanyOffers() {
     if (loading && isEditMode && !form.title) {
         return (
             <div className="flex justify-center mt-10">
-                <LoadingSpinner />
+                <SpinnerChargement />
             </div>
         );
     }
@@ -113,9 +113,9 @@ export default function FormCompanyOffers() {
                 {isEditMode ? "Modifier l'offre" : "Créer une nouvelle offre"}
             </h1>
 
-            {error && <ErrorMessage message={error} />}
+            {error && <MessageErreur message={error} />}
 
-            <CompanyOfferForm
+            <FormulaireOffreEntreprise
                 form={form}
                 setForm={setForm}
                 onSubmit={handleSubmit}

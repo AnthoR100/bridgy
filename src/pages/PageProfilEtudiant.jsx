@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import ErrorMessage from '../components/ErrorMessage';
-import LoadingSpinner from '../components/LoadingSpinner';
+import MessageErreur from '../components/MessageErreur';
+import SpinnerChargement from '../components/SpinnerChargement';
 import { useProfile } from '../hooks/useProfile';
 import { studentService } from '../services/api';
 
 /**
  * Page de profil étudiant permettant de visualiser et modifier les informations personnelles
  */
-const ProfilePage = () => {
+const PageProfilEtudiant = () => {
   const { profile, error, getStudentProfile } = useProfile();
 
   // État du formulaire avec les données du profil
@@ -208,11 +208,11 @@ const ProfilePage = () => {
 
         {/* Formulaire ou spinner de chargement */}
         {isFetching && !profile ? (
-          <LoadingSpinner message="Chargement du profil..." />
+          <SpinnerChargement message="Chargement du profil..." />
         ) : (
           <form id="profile-form" onSubmit={handleSubmit} className="space-y-4 px-4 py-4">
             {/* Messages d'erreur et de succès */}
-            <ErrorMessage message={localError} error={error} />
+            <MessageErreur message={localError} error={error} />
             {successMessage && (
               <div className="rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                 {successMessage}
@@ -375,5 +375,5 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default PageProfilEtudiant;
 

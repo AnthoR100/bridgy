@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
 import { useOffers } from "../hooks/useOffers";
-import OfferCard from "../components/OfferCard.jsx";
-import SearchBar from "../components/SearchBar.jsx";
+import CarteOffre from "../components/CarteOffre.jsx";
+import BarreRecherche from "../components/BarreRecherche.jsx";
 import { CONTRACT_TYPES } from "../services/config";
 
-export default function OffersList() {
+export default function PageListeOffres() {
     const { offers, loading, error } = useOffers();
     const [searchTerm, setSearchTerm] = useState("");
     const [contractType, setContractType] = useState("");
@@ -41,7 +41,7 @@ export default function OffersList() {
                 <h1 className="text-3xl font-semibold">Offres disponibles</h1>
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:items-center">
                     <div className="w-full sm:w-64">
-                        <SearchBar
+                        <BarreRecherche
                             value={searchTerm}
                             onChange={setSearchTerm}
                             placeholder="Rechercher par titre, entreprise ou lieu..."
@@ -71,7 +71,7 @@ export default function OffersList() {
             {Array.isArray(filteredOffers) && filteredOffers.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredOffers.map((offer) => (
-                        <OfferCard key={offer.id} offer={offer} />
+                        <CarteOffre key={offer.id} offer={offer} />
                     ))}
                 </div>
             ) : (

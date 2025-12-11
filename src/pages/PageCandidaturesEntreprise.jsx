@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import useApplications from '../hooks/useApplications';
-import ApplicationCard from '../components/ApplicationCard';
-import LoadingSpinner from '../components/LoadingSpinner';
-import ErrorMessage from '../components/ErrorMessage';
+import CarteCandidature from '../components/CarteCandidature';
+import SpinnerChargement from '../components/SpinnerChargement';
+import MessageErreur from '../components/MessageErreur';
 import { APPLICATION_STATUS, APPLICATION_STATUS_LABELS } from '../services/config';
 
-const CandidatesPage = () => {
+const PageCandidaturesEntreprise = () => {
   const { applications, loading, error, fetchApplications, updateStatus } =
     useApplications();
   const [successMessage, setSuccessMessage] = useState(null);
@@ -63,13 +63,13 @@ const CandidatesPage = () => {
 
   // Gestion des états de chargement et d'erreur
   if (loading && applications.length === 0) {
-    return <LoadingSpinner message="Chargement des candidatures..." />;
+    return <SpinnerChargement message="Chargement des candidatures..." />;
   }
 
   if (error && applications.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 px-4 py-6">
-        <ErrorMessage message={error} />
+        <MessageErreur message={error} />
         <div className="mt-4">
           <button
             onClick={fetchApplications}
@@ -101,7 +101,7 @@ const CandidatesPage = () => {
         )}
 
         {/* Message d'erreur */}
-        {error && <ErrorMessage message={error} />}
+        {error && <MessageErreur message={error} />}
 
         {/* Affichage Desktop - Tableau */}
         <div className="hidden lg:block">
@@ -247,7 +247,7 @@ const CandidatesPage = () => {
           ) : (
             <div className="space-y-4">
               {applications.map((app) => (
-                <ApplicationCard
+                <CarteCandidature
                   key={app.id}
                   application={app}
                   onStatusChange={handleStatusChange}
@@ -261,5 +261,5 @@ const CandidatesPage = () => {
   );
 };
 
-export default CandidatesPage;
+export default PageCandidaturesEntreprise;
 

@@ -1,12 +1,12 @@
 import { useAuth } from "../hooks/useAuth";
-import OffersList from "../components/OffersList.jsx";
-import CompanyOffers from "../components/CompanyOffers.jsx";
+import ListeOffres from "../components/ListeOffres.jsx";
+import ListeOffresEntreprise from "../components/ListeOffresEntreprise.jsx";
 
-const Home = () => {
+const PageAccueil = () => {
   const { isStudent, isCompany } = useAuth();
 
-  if (isStudent) return <OffersList />;
-  if (isCompany) return <CompanyOffers />;
+  if (isStudent) return <ListeOffres />;
+  if (isCompany) return <ListeOffresEntreprise />;
 
   return (
     <div className="p-6">
@@ -15,4 +15,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PageAccueil;

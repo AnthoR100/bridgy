@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import ErrorMessage from '../components/ErrorMessage';
+import MessageErreur from '../components/MessageErreur';
 import { useAuth } from '../hooks/useAuth';
 import Logo from '../assets/Logo.png'
 import '../styles/signupPage.css'
 
-const SignupPage = () => {
+const PageInscription = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -60,7 +60,7 @@ const SignupPage = () => {
             </div>
           </div>
           
-          <ErrorMessage message={error} />
+          <MessageErreur message={error} />
 
           <form onSubmit={handleSubmit} className="grid gap-4">
             <div className="flex relative">
@@ -181,5 +181,5 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default PageInscription;
 

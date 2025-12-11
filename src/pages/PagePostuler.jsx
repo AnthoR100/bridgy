@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { studentService } from "../services/api.js";
-import ApplicationForm from "../components/ApplicationForm.jsx";
+import FormulaireCandidature from "../components/FormulaireCandidature.jsx";
 
-export default function ApplyPage() {
+export default function PagePostuler() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [offer, setOffer] = useState(null);
@@ -43,7 +43,7 @@ export default function ApplyPage() {
                 </div>
             )}
 
-            <ApplicationForm
+            <FormulaireCandidature
                 offerId={id}
                 onCancel={() => navigate(-1)}
                 onSuccess={() => navigate("/offers")}

@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCompanyOffers } from "../hooks/useCompanyOffers.jsx";
-import CompanyOfferCard from "../components/CompanyOfferCard.jsx";
-import SearchBar from "../components/SearchBar.jsx";
+import CarteOffreEntreprise from "../components/CarteOffreEntreprise.jsx";
+import BarreRecherche from "../components/BarreRecherche.jsx";
 import { CONTRACT_TYPES } from "../services/config";
 
 
-export default function CompanyOffers() {
+export default function PageOffresEntreprise() {
     const navigate = useNavigate();
     const { offers, loading, error, deleteOffer } = useCompanyOffers();
     const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +40,7 @@ export default function CompanyOffers() {
                 <h1 className="text-3xl font-semibold">Mes Offres publiées</h1>
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:items-center">
                     <div className="w-full sm:w-64">
-                        <SearchBar
+                        <BarreRecherche
                             value={searchTerm}
                             onChange={setSearchTerm}
                             placeholder="Rechercher par titre ou lieu..."
@@ -76,7 +76,7 @@ export default function CompanyOffers() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredOffers && filteredOffers.length > 0 ? (
                     filteredOffers.map((offer) => (
-                        <CompanyOfferCard
+                        <CarteOffreEntreprise
                             key={offer.id }
                             offer={offer}
                             onDelete={() => deleteOffer(offer.id)}

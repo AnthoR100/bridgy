@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useCompanyOffers } from "../hooks/useCompanyOffers.jsx";
-import CompanyOfferCard from "./CompanyOfferCard.jsx";
-import CompanyOfferForm from "./CompanyOfferForm.jsx";
+import CarteOffreEntreprise from "./CarteOffreEntreprise.jsx";
+import FormulaireOffreEntreprise from "./FormulaireOffreEntreprise.jsx";
 import { offersService } from "../services/offersService.js";
-import LoadingSpinner from "./LoadingSpinner.jsx";
-import ErrorMessage from "./ErrorMessage.jsx";
+import SpinnerChargement from "./SpinnerChargement.jsx";
+import MessageErreur from "./MessageErreur.jsx";
 
-export default function CompanyOffers() {
+export default function ListeOffresEntreprise() {
     const { offers, loading, error, deleteOffer, loadOffers } = useCompanyOffers();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
@@ -145,7 +145,7 @@ export default function CompanyOffers() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {offers && offers.length > 0 ? (
                     offers.map((offer) => (
-                        <CompanyOfferCard
+                        <CarteOffreEntreprise
                             key={offer.id}
                             offer={offer}
                             onDelete={() => deleteOffer(offer.id)}
@@ -183,13 +183,13 @@ export default function CompanyOffers() {
                             </button>
                         </div>
                         <div className="p-6">
-                            {formError && <ErrorMessage message={formError} />}
+                            {formError && <MessageErreur message={formError} />}
                             {formLoading && isEditMode && !form.title ? (
                                 <div className="flex justify-center py-10">
-                                    <LoadingSpinner />
+                                    <SpinnerChargement />
                                 </div>
                             ) : (
-                                <CompanyOfferForm
+                                <FormulaireOffreEntreprise
                                     form={form}
                                     setForm={setForm}
                                     onSubmit={handleSubmit}

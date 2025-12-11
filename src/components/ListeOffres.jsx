@@ -1,7 +1,7 @@
 import { useOffers } from "../hooks/useOffers";
-import OfferCard from "./OfferCard.jsx";
+import CarteOffre from "./CarteOffre.jsx";
 
-export default function OffersList() {
+export default function ListeOffres() {
     const { offers, loading, error } = useOffers();
 
     if (loading) return <p className="text-center mt-10">Chargement...</p>;
@@ -16,7 +16,7 @@ export default function OffersList() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Array.isArray(offers) && offers.length > 0 ? (
-                    offers.map((offer) => <OfferCard key={offer.id} offer={offer} />)
+                    offers.map((offer) => <CarteOffre key={offer.id} offer={offer} />)
                 ) : (
                     <p>Aucune offre disponible</p>
                 )}

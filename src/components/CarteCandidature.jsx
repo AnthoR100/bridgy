@@ -1,7 +1,7 @@
 import { APPLICATION_STATUS, APPLICATION_STATUS_LABELS } from '../services/config';
 import { Calendar } from 'lucide-react';
 
-const ApplicationCard = ({ application, onStatusChange }) => {
+const CarteCandidature = ({ application, onStatusChange }) => {
   // Formater la date en français
   const formatDate = (dateString) => {
     if (!dateString) return 'Date non disponible';
@@ -144,5 +144,5 @@ const ApplicationCard = ({ application, onStatusChange }) => {
   );
 };
 
-export default ApplicationCard;
+export default CarteCandidature;
 
