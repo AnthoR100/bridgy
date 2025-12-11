@@ -8,6 +8,7 @@ import ProfilePageStudent from './pages/ProfilePageStudent';
 import ProfilePageCompany from './pages/ProfilePageCompany';
 import SignupPage from './pages/SignupPage';
 import ApplicationPage from './pages/ApplicationPage';
+import StudentApplicationsPage from './pages/StudentApplicationsPage';
 import LoadingSpinner from './components/LoadingSpinner';
 import OffersList from "./pages/OffersList.jsx";
 import CompanyOffers from "./pages/CompanyOffers.jsx";
@@ -168,7 +169,7 @@ function AppRoutes() {
                   <div className="flex min-h-screen bg-gray-50">
                     <Sidebar />
                     <div className="flex-1 overflow-x-hidden">
-                      <div className="text-lg font-semibold text-gray-800">Mes candidatures</div>
+                      <StudentApplicationsPage />
                     </div>
                   </div>
                 </ProtectedRoute>
