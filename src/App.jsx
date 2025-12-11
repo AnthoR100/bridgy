@@ -10,8 +10,8 @@ import SignupPage from './pages/SignupPage';
 import ApplicationPage from './pages/ApplicationPage';
 import StudentApplicationsPage from './pages/StudentApplicationsPage';
 import LoadingSpinner from './components/LoadingSpinner';
-import OffersList from "./components/OffersList.jsx";
-import CompanyOffers from "./components/CompanyOffers.jsx";
+import OffersList from "./pages/OffersList.jsx";
+import CompanyOffers from "./pages/CompanyOffers.jsx";
 import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
 import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
 
