@@ -1,8 +1,28 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function CardDetailOffer({ offer }) {
+    const navigate = useNavigate();
+    const { isAuthenticated, isStudent } = useAuth();
+
     if (!offer) return null;
+
+    const handleApplyClick = () => {
+        if (!isAuthenticated) {
+            // Redirige vers login si pas connecté
+            navigate("/login");
+            return;
+        }
+
+        if (!isStudent) {
+            alert("Seuls les étudiants peuvent postuler à cette offre.");
+            return;
+        }
+
+        // Redirige vers la page de candidature pour cette offre
+        navigate(`/apply/${offer.id}`);
+    };
 
     return (
         <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6 border border-gray-200">
@@ -57,7 +77,7 @@ export default function CardDetailOffer({ offer }) {
             <div className="mt-6">
                 <button
                     className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition"
-                    onClick={() => alert("Candidature envoyée (à implémenter)")}
+                    onClick={handleApplyClick}
                 >
                     Postuler
                 </button>

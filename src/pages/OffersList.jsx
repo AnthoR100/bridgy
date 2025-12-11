@@ -1,8 +1,8 @@
-import { useOffers } from "../hooks/useOffers";
+import { useStudentOffers } from "../hooks/useStudentOffers.jsx";
 import OfferCard from "../components/OfferCard.jsx";
 
 export default function OffersList() {
-    const { offers, loading, error } = useOffers();
+    const { offers, loading, error } = useStudentOffers();
 
     if (loading) return <p className="text-center mt-10">Chargement...</p>;
     if (error) return <p className="text-center mt-10 text-red-600">{error}</p>;

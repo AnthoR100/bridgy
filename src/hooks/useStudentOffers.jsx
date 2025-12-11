@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import { useAuth } from './useAuth';
 import { offersService } from "../services/offersService.js";
 
-export function useOffers() {
+export function useStudentOffers() {
     const { user } = useAuth();
     const [offers, setOffers] = useState([]);
     const [loading, setLoading] = useState(true);

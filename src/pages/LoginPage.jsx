@@ -26,6 +26,7 @@ const LoginPage = () => {
       }
 
       const role = data?.user?.role;
+      console.log(role);
       if (role === 'STUDENT') {
         navigate('/offers', { replace: true });
       } else if (role === 'COMPANY') {

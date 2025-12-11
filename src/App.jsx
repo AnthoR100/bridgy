@@ -10,6 +10,8 @@ import OffersList from "./pages/OffersList.jsx";
 import CompanyOffers from "./pages/CompanyOffers.jsx";
 import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
 import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
+import ApplicationPage from "./pages/ApplicationPage.jsx";
+
 
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany, loading } = useAuth();
@@ -74,6 +76,13 @@ function AppRoutes() {
                     </ProtectedRoute>
                 }
             />
+            <Route path="/apply/:id" element={
+                <ProtectedRoute requiredRole="STUDENT">
+                <ApplicationPage />
+                </ProtectedRoute>
+            }
+                 />
+
 
           <Route
             path="/my-offers"
@@ -88,7 +97,7 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/company/offers"
             element={
