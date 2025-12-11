@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { studentService } from "../services/api.js";
 import ApplicationForm from "../components/ApplicationForm.jsx";
 
-export default function ApplicationPage() {
+export default function ApplyPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [offer, setOffer] = useState(null);

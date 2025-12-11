@@ -10,7 +10,7 @@ import OffersList from "./pages/OffersList.jsx";
 import CompanyOffers from "./pages/CompanyOffers.jsx";
 import FormCompanyOffers from "./pages/FormCompanyOffers.jsx";
 import OfferDetailsPage from "./pages/OfferDetailsPage.jsx";
-import ApplicationPage from "./pages/ApplicationPage.jsx";
+import ApplyPage from "./pages/ApplyPage.jsx";
 
 
 function AppRoutes() {
@@ -78,7 +78,7 @@ function AppRoutes() {
             />
             <Route path="/apply/:id" element={
                 <ProtectedRoute requiredRole="STUDENT">
-                <ApplicationPage />
+                <ApplyPage />
                 </ProtectedRoute>
             }
                  />

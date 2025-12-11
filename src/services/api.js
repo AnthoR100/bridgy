@@ -89,8 +89,8 @@ export const authService = {
 
   // Récupérer l'utilisateur courant
   getCurrentUser: () => {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
   },
 };
 
