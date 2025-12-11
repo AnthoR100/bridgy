@@ -128,8 +128,8 @@ export default function ListeOffresEntreprise() {
     if (error) return <div className="text-center mt-10 text-red-600">{error}</div>;
 
     return (
-        <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="p-4 sm:p-6">
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p className="text-xs uppercase tracking-wide text-gray-500">Espace étudiant</p>
                     <h1 className="text-lg font-semibold text-gray-900">Offres publiées</h1>
