@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useOffers } from "../hooks/useOffers";
+import { useOffers } from "../hooks/useOffers.js";
 import CarteOffre from "../components/CarteOffre.jsx";
 import BarreRecherche from "../components/BarreRecherche.jsx";
 import { CONTRACT_TYPES } from "../services/config";

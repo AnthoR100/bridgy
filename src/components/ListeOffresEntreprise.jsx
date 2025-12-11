@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useCompanyOffers } from "../hooks/useCompanyOffers.jsx";
+import { useCompanyOffers } from "../hooks/useCompanyOffers.js";
 import CarteOffreEntreprise from "./CarteOffreEntreprise.jsx";
 import FormulaireOffreEntreprise from "./FormulaireOffreEntreprise.jsx";
 import { offersService } from "../services/offersService.js";
@@ -52,9 +52,9 @@ export default function ListeOffresEntreprise() {
                     description: offerData.description || "",
                     contractType: offerData.contractType || "CDI",
                     location: offerData.location || "",
-                    keywords: Array.isArray(offerData.keywords)
-                        ? offerData.keywords.join(", ")
-                        : (offerData.keywords || "")
+                    keywords: Array.isArray(offerData.skills ?? offerData.keywords)
+                        ? (offerData.skills ?? offerData.keywords).join(", ")
+                        : (offerData.skills ?? offerData.keywords ?? "")
                 });
             }
             setIsModalOpen(true);

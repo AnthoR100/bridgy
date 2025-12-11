@@ -1,4 +1,4 @@
-import { useOffers } from "../hooks/useOffers";
+import { useOffers } from "../hooks/useOffers.js";
 import CarteOffre from "./CarteOffre.jsx";
 
 export default function ListeOffres() {

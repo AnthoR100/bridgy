@@ -58,8 +58,9 @@ export default function FormulaireOffreEntreprise({ form, setForm, onSubmit, isE
                     >
                         <option value="CDI">CDI</option>
                         <option value="CDD">CDD</option>
-                        <option value="STAGE">Stage</option>
-                        <option value="ALTERNANCE">Alternance</option>
+                        <option value="INTERNSHIP">Stage</option>
+                        <option value="APPRENTICESHIP">Alternance</option>
+                        <option value="FREELANCE">Freelance</option>
                     </select>
                 </div>
 
@@ -82,7 +83,7 @@ export default function FormulaireOffreEntreprise({ form, setForm, onSubmit, isE
 
             <div>
                 <label className="text-xs font-medium text-gray-600" htmlFor="keywords">
-                    Mots-clés (séparés par virgules)
+                    Mots-clés / Compétences (séparés par virgules)
                 </label>
                 <input
                     id="keywords"
