@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { offersService } from "../services/offersService.js";
+
 import OfferDetailsCard from "../components/OfferDetailsCard.jsx";
 
 export default function OfferDetailsPage() {

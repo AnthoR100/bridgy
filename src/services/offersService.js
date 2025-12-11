@@ -10,5 +10,4 @@ import { api } from "./api.js";
         updateOffer: (offerId, data) => api.put(`/companies/offers/${offerId}`, data),
         deleteOffer: (offerId) => api.delete(`/companies/offers/${offerId}`),
 
-
     };

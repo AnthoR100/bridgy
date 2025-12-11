@@ -1,10 +1,35 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export default function CardDetailOffer({ offer }) {
-    const { isStudent } = useAuth();
+    const navigate = useNavigate();
+    const { isAuthenticated, isStudent } = useAuth();
 
     if (!offer) return null;
+
+    const handleApplyClick = () => {
+        if (!isAuthenticated) {
+            // Redirige vers login si pas connecté
+            navigate("/login");
+            return;
+        }
+
+        if (!isStudent) {
+            alert("Seuls les étudiants peuvent postuler à cette offre.");
+            return;
+        }
+
+        // Redirige vers la page de candidature pour cette offre
+        navigate(`/apply/${offer.id}`);
+    };
+
+    return (
+        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            {/* Titre */}
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                {offer.title ?? "Titre non disponible"}
+            </h1>
 
     const contractType = offer.contractType ?? "Non renseigné";
     const location = offer.location ?? "Non renseignée";
@@ -72,15 +97,14 @@ export default function CardDetailOffer({ offer }) {
                     </section>
                 )}
 
-                {/* CTA */}
-                <div className="pt-4 border-t border-gray-200">
-                    <button
-                        className="cursor-pointer rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-600"
-                        onClick={handleApply}
-                    >
-                        Postuler
-                    </button>
-                </div>
+            {/* Bouton Postuler */}
+            <div className="mt-6">
+                <button
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition"
+                    onClick={handleApplyClick}
+                >
+                    Postuler
+                </button>
             </div>
         </div>
     );
